@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Etat_tache;
-use App\Models\EtatTache;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EtatTacheFactory extends Factory
@@ -27,3 +26,4 @@ class EtatTacheFactory extends Factory
         ];
     }
 }
+

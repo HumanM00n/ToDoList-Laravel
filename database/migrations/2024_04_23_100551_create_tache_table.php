@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('tdl_tache', function (Blueprint $table) {
             $table->id('id_tache');
             $table->foreignId('nom_users_tache')->constrained('tdl_users');
-            $table->string('titre_tache');
-            $table->string('description_tache');
+            $table->string('titre_tache', 30);
+            $table->string('description_tache', 150);
             $table->date('ddb_tache');
             $table->date('ddf_tache');
             $table->foreignId('etat_tache')->constrained('tdl_etat_tache');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tache');
+        Schema::dropIfExists('tdl_tache');
     }
 };
