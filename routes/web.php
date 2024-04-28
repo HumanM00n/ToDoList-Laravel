@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+
+Route::get('/register', [UserController::class, 'Auth']);
+Route::post('/register', [UserController::class, 'registerUser']);
+
+Route::get('/email/verify', [UserController::class, 'notice'])
+->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verification'])
+->middleware(['{verifyemail ,signed'])
+->name('verification.verify');
