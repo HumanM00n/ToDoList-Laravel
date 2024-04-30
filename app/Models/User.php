@@ -17,6 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     protected $table = 'tdl_users';
+     
     protected $fillable = [
         'id_users',
         'nom',

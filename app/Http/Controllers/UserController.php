@@ -34,21 +34,38 @@ class UserController extends Controller {
         // Enregistrer l'utilisateur 
         $user = User::create([
             'nom' => $insertData['nom'],
-            'prenom' => $insertData['nom'],
-            'email' => $insertData['nom'],
-            'password' => $insertData['nom']
+            'prenom' => $insertData['prenom'],
+            'email' => $insertData['email'],
+            'password' => Hash::make($insertData['password'])
 
         ]);
 
         // Notification de mail pour valider 
         $user->notify(new ActivateEmailLink);
 
-        // Ajout d'un message de succès à la créaion du compte
+        // Redirection avec un message de succès
         session()->flash('success', 'Votre compte a été créé avec succès !');
-
-        // Redirigez l'utilisateur vers une page appropriée
-        return redirect()->route('/login');
+        return redirect('/login');
         
+    }
+
+    // Fonction pour connecter l'utilisateur 
+    public function login(Request $request) {
+        $loginUser = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+    ]);
+
+        if(Auth::attempt($loginUser, $request->remember)) {
+            $request->session()->regenerate();
+            return redirect()->intented('/');
+        }
+        return back();
+
+    }
+
+    public function connexion() {
+        return view('auth.login');
     }
 }
 

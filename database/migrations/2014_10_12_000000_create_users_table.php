@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('tdl_users', function (Blueprint $table) {
             $table->id('id_users');
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
+            $table->string('nom', 30);
+            $table->string('prenom', 30);
+            $table->string('email', 190)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password', 255);
             $table->rememberToken();
             $table->timestamps();
         });

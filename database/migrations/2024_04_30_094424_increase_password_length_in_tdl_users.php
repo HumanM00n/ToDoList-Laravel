@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tdl_etat_tache', function (Blueprint $table) {
-            $table->id('id_etat');
-            $table->string('lib_etat', 50);
+        Schema::table('tdl_users', function (Blueprint $table) {
+            //
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tdl_etat_tache');
+        Schema::table('tdl_users', function (Blueprint $table) {
+            //
+        });
     }
 };

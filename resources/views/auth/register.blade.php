@@ -60,11 +60,12 @@
             {{-- BUTTON --}}
             <div class="col-12">
             <button type="submit" class="btn btn-primary">Enregistrer</button>
-            <!-- Dans votre vue -->
-            @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+
+            {{-- Message de success lorsque l'utilisateur a crée son compte --}}
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             @endif
 
             </div>
